@@ -6,7 +6,7 @@ rawdf = pd.read_csv('C:/Users/CHK/Desktop/kafka/kafka/kafka1/dfs/tmdb_5000_movie
 
 # Kafka consumer 설정
 consumer = KafkaConsumer(
-    'customer_movies',
+    customer_name,
     group_id='customer_group',
     bootstrap_servers=['localhost:9092'],  # Kafka 서버 주소로 변경
     value_deserializer=lambda x: x.decode('utf-8')

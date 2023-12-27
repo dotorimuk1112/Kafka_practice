@@ -20,8 +20,9 @@ producer = KafkaProducer(
 # Kafka 토픽에 메시지 전송
 try:
     print('producer start')
-    producer.send('customer_movies', customer_name)
+    producer.send(customer_name, customer_name)
 except KafkaError as e:
     print(f"Error while producing message: {e}")
 finally:
     producer.close()
+

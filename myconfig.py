@@ -1,8 +1,6 @@
-import pandas as pd
-from collections import Counter
-from datetime import datetime
+customer_name= 'HK'
 
-customer_name= 'C'
+
 
 # def parse_genres(genres_str):
 #     try:
