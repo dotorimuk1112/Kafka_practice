@@ -6,8 +6,8 @@ import os.path
 # Kafka consumer 설정
 consumer = KafkaConsumer(
     myconfig.customer_name,
-    bootstrap_servers=['localhost:9092'],
-    group_id='friend_consumer1',
+    bootstrap_servers=[myconfig.port],
+    group_id='friend_consumer2',
     auto_offset_reset='earliest',
     enable_auto_commit=False,  # 수동으로 offset을 커밋하도록 설정
     key_deserializer=lambda x: x.decode('utf-8'),
@@ -28,8 +28,8 @@ for message in consumer:
 
         # 필요한 정보만 뽑아서 출력 (관객수 상위 10개만)
         print(f'{myconfig.customer_name}님 시청 기록의 최애 장르 중 관객수 상위 10개의 영화 목록입니다.')
-        print(f"Friend received message - Most-watched genre for {myconfig.customer_name}: {most_watched_genre}")
-        print(f"Top 10 Movies based on Popularity in {favorites_filename}:")
+        print(f"친구 {myconfig.customer_name}님의 최애 장르는 {most_watched_genre}입니다.")
+        print(f"아래는 추천 리스트입니다.")
 
         top_10_movies = favorites_df.nlargest(10, 'popularity')
         for index, row in top_10_movies.iterrows():
@@ -42,7 +42,3 @@ for message in consumer:
         consumer.commit()
     else:
         print(f"Error: File not found - {favorites_filename}")
-
-        # 광열 시청기록 - 거기서 가장 많이 본 장르 중에서 관객수가 가장 높은 10개 - 그거를 consumer에서 관객수 높은 순으로 정렬
-
-        topic = 'KY'
